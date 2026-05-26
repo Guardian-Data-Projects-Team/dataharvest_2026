@@ -28,6 +28,7 @@ prompts <- original_data |>
   as.list()
 
 data <- parallel_chat_structured(chat, prompts, 
-                                 type = type_employees) |> 
+                                 type = type_employees,
+                                 rpm = 15) |> #for free google gemini
   #join back our prompts, for checking:
   mutate(prompts=unlist(prompts))

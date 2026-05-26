@@ -2,12 +2,12 @@ library(tidyverse)
 library(ellmer)
 
 #Read the data
-recipients<-read_csv("https://raw.githubusercontent.com/Guardian-Data-Projects-Team/dataharvest_2026/refs/heads/main/data/country_classification_data.csv?token=GHSAT0AAAAAAD6HTL3ATDWZSR74KHCZ7SIU2QWDAOQ")
+recipients <- read_csv("https://raw.githubusercontent.com/Guardian-Data-Projects-Team/dataharvest_2026/refs/heads/main/data/country_classification_data.csv?token=GHSAT0AAAAAAD6HTL3ATDWZSR74KHCZ7SIU2QWDAOQ")
 
 #Find the official UN names of the recipients
 
 #set up an ai and give it a system prompt
-chat <- chat_openai(
+chat <- chat_google_gemini(
   model = "gpt-4o",
   system_prompt = "You are given a list of names of countries and world regions. In some cases, each row contain a single country. 
   In some cases, there is no single country, but a world region: for instance, Latin America and the Caribbean or South East Asia.
@@ -33,7 +33,7 @@ countries <- type_object(
   SID_marker=type_string("If the country is considered as SIDs (Small Island Developing States) according to the UN classification, write SIDs. If there is a list of countries and one is an SIDs, write 'at least one SIDs'. If none of the countries belong to the SIDs group, write 'none SIDs'", required = FALSE)
 )
 
-list_countries<-recipients$recipient %>% as.list()
+list_countries <- recipients$recipient %>% as.list()
 
 
 #running in parallel
