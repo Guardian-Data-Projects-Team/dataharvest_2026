@@ -8,7 +8,7 @@ recipients <- read_csv("https://raw.githubusercontent.com/Guardian-Data-Projects
 
 #set up an ai and give it a system prompt
 chat <- chat_google_gemini(
-  model = "gpt-4o",
+  model = "gemini-flash-lite-latest",
   system_prompt = "You are given a list of names of countries and world regions. In some cases, each row contain a single country. 
   In some cases, there is no single country, but a world region: for instance, Latin America and the Caribbean or South East Asia.
   In some other cases, several countries appear in the same line separated by commas. 
@@ -28,6 +28,7 @@ countries <- type_object(
   .description = "Name of countries or world regions.",
   input_name=type_string("The name as it appears in the dataset"),
   un_official_name=type_string("The official name of the country or region as used by the United Nations, or 'unknown' if you can't identify it", required = FALSE),
+  iso3_code = type_string("The ISO3 country code. If more than one country, separate by a comma;"),
   un_classification=type_string("The UN classification of the country as developed or developing economies, or 'several UN groups' if there are several countries with different classifications.", required=FALSE),
   LDC_marker=type_string("If the country is considered as LDCs (Least Developed Countries) according to the UN classification, write LDC. If there is a list of countries and one is an LDCs, write 'at least one LDC'. If none of the countries belong to the LDC group, write 'none LDC'", required = FALSE),
   SID_marker=type_string("If the country is considered as SIDs (Small Island Developing States) according to the UN classification, write SIDs. If there is a list of countries and one is an SIDs, write 'at least one SIDs'. If none of the countries belong to the SIDs group, write 'none SIDs'", required = FALSE)
