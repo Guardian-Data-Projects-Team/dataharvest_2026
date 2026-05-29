@@ -1,4 +1,5 @@
-# dataharvest_2026
+# Using LLMs in R: the Ellmer package
+
 Material for ellmer workshop
 # https://github.com/Guardian-Data-Projects-Team/dataharvest_2026
 
